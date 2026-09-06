@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Commission Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  // Set the theme attribute before first paint to avoid a flash of the
+  // wrong theme. Reads localStorage directly since storage.js hasn't
+  // loaded yet — kept in sync with Storage's default ('light').
+  (function () {
+    try {
+      var raw = localStorage.getItem('cm_settings');
+      var settings = raw ? JSON.parse(raw) : null;
+      var valid = ['light', 'dark', 'blue', 'pink'];
+      var theme = settings && settings.appearance && valid.indexOf(settings.appearance.theme) !== -1 ? settings.appearance.theme : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Sidebar (desktop) / Top bar (mobile) -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark" aria-hidden="true">✎</span>
+        <span class="brand-name">Commission Manager</span>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-desktop" aria-label="Toggle theme" aria-pressed="false" title="Theme">
+          <span class="theme-dot" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="#/dashboard" class="nav-item" data-route="dashboard">
+          <span class="nav-icon" aria-hidden="true">&#8962;</span>
+          <span data-i18n="nav.dashboard">Dashboard</span>
+        </a>
+        <a href="#/products" class="nav-item" data-route="products">
+          <span class="nav-icon" aria-hidden="true">◧</span>
+          <span data-i18n="nav.products">Products</span>
+        </a>
+        <a href="#/invoices" class="nav-item" data-route="invoices">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span data-i18n="nav.invoices">Invoices</span>
+        </a>
+        <a href="#/calendar" class="nav-item" data-route="calendar">
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          <span data-i18n="nav.calendar">Calendar</span>
+        </a>
+        <a href="#/settings" class="nav-item" data-route="settings">
+          <span class="nav-icon" aria-hidden="true">⚙</span>
+          <span data-i18n="nav.settings">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a href="#/dashboard" class="bottom-nav-item" data-route="dashboard">
+        <span class="nav-icon" aria-hidden="true">&#8962;</span>
+        <span data-i18n="nav.dashboard">Dashboard</span>
+      </a>
+      <a href="#/products" class="bottom-nav-item" data-route="products">
+        <span class="nav-icon" aria-hidden="true">◧</span>
+        <span data-i18n="nav.products">Products</span>
+      </a>
+      <a href="#/invoices" class="bottom-nav-item" data-route="invoices">
+        <span class="nav-icon" aria-hidden="true">▤</span>
+        <span data-i18n="nav.invoices">Invoices</span>
+      </a>
+      <a href="#/calendar" class="bottom-nav-item" data-route="calendar">
+        <span class="nav-icon" aria-hidden="true">▦</span>
+        <span data-i18n="nav.calendar">Calendar</span>
+      </a>
+      <a href="#/settings" class="bottom-nav-item" data-route="settings">
+        <span class="nav-icon" aria-hidden="true">⚙</span>
+        <span data-i18n="nav.settings">Settings</span>
+      </a>
+    </nav>
+
+    <!-- Page content -->
+    <main class="page" id="page-root">
+      <!-- injected by router.js -->
+    </main>
+  </div>
+
+  <!-- Slide-over panel (Add/Edit Product) -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="slide-over" id="slide-over" role="dialog" aria-modal="true" aria-labelledby="slide-over-title">
+      <!-- injected by products.js -->
+    </div>
+  </div>
+
+  <!-- Confirm dialog -->
+  <div class="overlay" id="confirm-overlay" hidden>
+    <div class="confirm-dialog" id="confirm-dialog" role="alertdialog" aria-modal="true">
+      <!-- injected by confirm.js -->
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/confirm.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+  <script src="js/pages/products.js"></script>
+  <script src="js/pages/invoices.js"></script>
+  <script src="js/pages/invoice-editor.js"></script>
+  <script src="js/pages/calendar.js"></script>
+  <script src="js/pages/settings.js"></script>
+  <script src="js/router.js"></script>
+</body>
+</html>
