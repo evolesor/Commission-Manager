@@ -380,11 +380,11 @@ const I18n = (() => {
     },
   };
 
-  const LANG_ORDER = ['th', 'en']; // display order in the picker; extend here later
+  const LANG_ORDER = ['en', 'th']; // display order in the picker; extend here later
 
   function getLocale() {
     const settings = Storage.getSettings();
-    return DICTS[settings.language] ? settings.language : 'th';
+    return DICTS[settings.language] ? settings.language : 'en';
   }
 
   function setLocale(lang) {
@@ -396,7 +396,7 @@ const I18n = (() => {
   }
 
   function t(path, vars) {
-    const dict = DICTS[getLocale()] || DICTS.th;
+    const dict = DICTS[getLocale()] || DICTS.en;
     const parts = path.split('.');
     let node = dict;
     for (const p of parts) {

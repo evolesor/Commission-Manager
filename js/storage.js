@@ -13,7 +13,7 @@ const Storage = (() => {
   };
 
   const DEFAULT_SETTINGS = {
-    language: 'th',
+    language: 'en',
     artist: { artistName: '', displayName: '', contact: '', socialLinks: '' },
     payment: { method: 'bank', detail: '' },
     invoiceDefaults: { currency: 'THB', defaultNotes: '', paymentTerms: '' },
